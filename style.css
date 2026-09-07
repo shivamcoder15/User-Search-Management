@@ -1,0 +1,426 @@
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 40px 20px;
+    min-height: 100vh;
+
+    font-family: "Helvetica Neue", sans-serif;
+
+    color: #fff;
+
+    /* Background Image + Dark Overlay */
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=2000&auto=format&fit=crop");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+main {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   SEARCH INPUT
+   ========================= */
+
+.inp {
+    display: block;
+
+    width: min(100%, 400px);
+
+    margin: 0 auto 40px;
+
+    padding: 15px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(17, 17, 17, 0.85);
+    color: #fff;
+
+    font-size: 16px;
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.inp::placeholder {
+    color: #999;
+}
+
+.inp:focus {
+    border-color: rgba(255, 255, 255, 0.45);
+
+    background: rgba(20, 20, 20, 0.95);
+
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================
+   CARDS CONTAINER
+   ========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+    );
+
+    gap: 30px;
+
+    width: 100%;
+}
+
+
+/* =========================
+   CARD
+   ========================= */
+
+.card {
+    position: relative;
+
+    width: 100%;
+    max-width: 220px;
+    height: 320px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #111;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5);
+
+    transition:
+        transform 0.45s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+        box-shadow 0.45s ease;
+
+    will-change: transform;
+}
+
+
+/* Card Hover */
+
+.card:hover {
+    transform:
+        translateY(-12px)
+        scale(1.06);
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.75);
+}
+
+
+/* =========================
+   CARD IMAGE
+   ========================= */
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s cubic-bezier(
+            0.2,
+            0.8,
+            0.2,
+            1
+        ),
+        filter 0.4s ease;
+
+    will-change: transform;
+}
+
+
+/* Image Hover Zoom */
+
+.card:hover .bg-img {
+    transform: scale(1.12);
+}
+
+
+/* =========================
+   BLURRED LAYER
+   ========================= */
+
+.blurred-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background-size: cover;
+    background-position: center;
+
+    filter: blur(10px);
+
+    transform: scale(1.05);
+
+    mask-image: linear-gradient(
+        to top,
+        #000 0%,
+        rgba(0, 0, 0, 0.85) 35%,
+        transparent 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to top,
+        #000 0%,
+        rgba(0, 0, 0, 0.85) 35%,
+        transparent 100%
+    );
+
+    transition:
+        transform 0.6s ease,
+        filter 0.5s ease;
+}
+
+
+/* Blurred Layer Hover */
+
+.card:hover .blurred-layer {
+    transform: scale(1.15);
+
+    filter: blur(12px);
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
+
+.content {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+
+    z-index: 2;
+
+    color: #fff;
+
+    transition:
+        transform 0.45s ease,
+        opacity 0.45s ease;
+}
+
+
+/* Content Hover */
+
+.card:hover .content {
+    transform: translateY(-5px);
+}
+
+
+/* =========================
+   USER NAME
+   ========================= */
+
+.content h3 {
+    margin: 0 0 7px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-transform: capitalize;
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   USER BIO
+   ========================= */
+
+.content p {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #ddd;
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 30px 16px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+        gap: 20px;
+    }
+
+    .card {
+        max-width: 200px;
+        height: 290px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 12px;
+
+        background-attachment: scroll;
+    }
+
+    .inp {
+        width: 100%;
+
+        margin-bottom: 30px;
+
+        padding: 14px 16px;
+
+        font-size: 15px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 14px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: none;
+
+        height: 270px;
+
+        border-radius: 14px;
+    }
+
+    .content {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .content h3 {
+        font-size: 16px;
+    }
+
+    .content p {
+        font-size: 12px;
+    }
+
+    /* Mobile par zoom thoda kam */
+    .card:hover {
+        transform:
+            translateY(-6px)
+            scale(1.025);
+    }
+
+    .card:hover .bg-img {
+        transform: scale(1.07);
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+
+@media (max-width: 380px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        width: 220px;
+        height: 300px;
+    }
+}
+
+
+/* =========================
+   REDUCE ANIMATION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .card,
+    .bg-img,
+    .blurred-layer,
+    .content,
+    .inp {
+        transition: none;
+    }
+}
